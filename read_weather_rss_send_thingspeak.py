@@ -6,7 +6,8 @@ from bs4 import BeautifulSoup
 
 while True:
   r=requests.get('https://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1141058500')
-  soup = BeautifulSoup(r.content, "html.parser")
+  #soup = BeautifulSoup(r.content, "html.parser")
+  soup = BeautifulSoup(r.content, features="xml")   #  pip3 install lxml
   print(soup.temp.string)
 
   r=requests.get(f'https://api.thingspeak.com/update?api_key=L60RYNOQ6CARVMRE&field1={soup.temp.string}')
